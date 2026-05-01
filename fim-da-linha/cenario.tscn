@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://51iak7cn5cqf"]
+
+[ext_resource type="PackedScene" uid="uid://divs0tx8qyn3l" path="res://BackgroundFabrica.tscn" id="1_bj8tx"]
+[ext_resource type="PackedScene" uid="uid://cdfuyfi01bb7s" path="res://Tiles.tscn" id="2_r0gk3"]
+[ext_resource type="Script" uid="uid://cl2wlf5ryqlau" path="res://RaiderBody.gd" id="3_0nnsg"]
+[ext_resource type="Texture2D" uid="uid://b0n77f24p44nw" path="res://Idle.png" id="4_vkdxw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4qp2d"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_mqnm2"]
+a = Vector2(88.61719, -15.278839)
+b = Vector2(-100.84033, -15.278839)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tdcj"]
+atlas = ExtResource("4_vkdxw")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy1w7"]
+atlas = ExtResource("4_vkdxw")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7kam"]
+atlas = ExtResource("4_vkdxw")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j14hu"]
+atlas = ExtResource("4_vkdxw")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecuka"]
+atlas = ExtResource("4_vkdxw")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mitsp"]
+atlas = ExtResource("4_vkdxw")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g8jft"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tdcj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wy1w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7kam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j14hu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecuka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mitsp")
+}],
+"loop": true,
+"name": &"RaiderIdle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5krud"]
+radius = 2.0
+height = 22.0
+
+[node name="Cenario" type="Node2D" unique_id=1258469848]
+
+[node name="City" parent="." unique_id=1984508989 instance=ExtResource("1_bj8tx")]
+position = Vector2(288, 0)
+
+[node name="City2" parent="." unique_id=829974868 instance=ExtResource("1_bj8tx")]
+position = Vector2(-289, 0)
+
+[node name="Tiles" parent="." unique_id=393810775 instance=ExtResource("2_r0gk3")]
+position = Vector2(-546, 154)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="Tiles" unique_id=533437427]
+position = Vector2(1.038961, -1.5584416)
+physics_material_override = SubResource("PhysicsMaterial_4qp2d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/AnimatableBody2D" unique_id=902955466]
+scale = Vector2(0.17, 0.17)
+shape = SubResource("SegmentShape2D_mqnm2")
+
+[node name="Player" type="Node2D" parent="." unique_id=1415738749]
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1975660475]
+position = Vector2(-438, 79)
+zoom = Vector2(4.155, 4.155)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Player" unique_id=1895615743]
+script = ExtResource("3_0nnsg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player/CharacterBody2D" unique_id=872120831]
+position = Vector2(-556, 114)
+scale = Vector2(0.390625, 0.4765625)
+sprite_frames = SubResource("SpriteFrames_g8jft")
+animation = &"RaiderIdle"
+frame = 1
+frame_progress = 0.46487162
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CharacterBody2D" unique_id=723245405]
+position = Vector2(-557, 127)
+shape = SubResource("CapsuleShape2D_5krud")

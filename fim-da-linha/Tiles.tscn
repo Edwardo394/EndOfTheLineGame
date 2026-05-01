@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cdfuyfi01bb7s"]
+
+[ext_resource type="Texture2D" uid="uid://bbdi6nyab4uvr" path="res://railtrack_v1.png" id="1_lj14k"]
+
+[node name="Sprite2D3" type="Sprite2D" unique_id=393810775]
+scale = Vector2(1.925, 1.925)
+texture = ExtResource("1_lj14k")
